@@ -22,5 +22,5 @@ app.use(cors({
 app.use("/", adminRoutes)
 app.use("/auth", authRoutes)
 app.use("/api", testRoutes)
-
+app.listen("3000")
 module.exports.handler = serverless(app);

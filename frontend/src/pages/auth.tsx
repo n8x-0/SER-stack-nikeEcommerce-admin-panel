@@ -31,7 +31,7 @@ const AdminLogin = () => {
                 password: password,
             };
     
-            const res = await fetch(`http://localhost:3000/auth`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",

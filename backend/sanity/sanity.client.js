@@ -1,22 +1,21 @@
-require("dotenv").config()
-const nextsanity = require("next-sanity");
+require("dotenv").config();
+const {createClient} = require("@sanity/client");
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
-const token = process.env.NEXT_PUBLIC_SANITY_TOKEN
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+const token = process.env.NEXT_PUBLIC_SANITY_TOKEN;
 
-if(!projectId || !dataset || !token){
-    console.log("env variabels are missing");
-    throw new Error("Something went wrong")
+if (!projectId || !dataset || !token) {
+    console.error("Missing required environment variables.");
+    throw new Error("Sanity configuration error");
 }
 
-const clientConf = {
+const client = createClient({
     projectId,
     dataset,
     useCdn: false,
     token,
-    apiVersion:'2024-12-25',
-}
+    apiVersion: "2024-12-25",
+});
 
-const client = nextsanity.createClient(clientConf)
-module.exports = client
+module.exports = client;

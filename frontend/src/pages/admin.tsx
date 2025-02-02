@@ -16,7 +16,7 @@ const Admin = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:3000/auth/logout", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/logout`, {
                 method: "GET",
                 credentials: "include",
                 headers: {
@@ -33,7 +33,7 @@ const Admin = () => {
 
     const getData = async () => {
         try {
-            const res = await fetch("http://localhost:3000/admin", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/admin`, {
                 method: "GET",
                 credentials: "include",
                 headers: {
