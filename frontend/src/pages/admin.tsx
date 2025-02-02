@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { OrderT } from "../utils/types";
 import ActionBtns from "../components/ActionBtns";
 import Loader from "../components/loader";
@@ -14,7 +14,6 @@ const Admin = () => {
 
     const logout = async (e: React.FormEvent) => {
         e.preventDefault();
-
         try {
             const res = await fetch(`https://fifth-large-mechanic.glitch.me/auth/logout`, {
                 method: "GET",
@@ -31,33 +30,36 @@ const Admin = () => {
         }
     };
 
-    const getData = async () => {
-        try {
-            const res = await fetch(`https://fifth-large-mechanic.glitch.me/admin`, {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
 
-            if (res.status === 401) {
-                window.location.href = "/";
-                return;
-            }
+    const getData = useCallback(() => {
+        async () => {
+            try {
+                const res = await fetch(`https://fifth-large-mechanic.glitch.me/admin`, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
 
-            if (res.ok) {
-                const data = await res.json();
-                setOrders(data);
-                setFilteredOrders(data);
+                if (res.status === 401) {
+                    window.location.href = "/";
+                    return;
+                }
+
+                if (res.ok) {
+                    const data = await res.json();
+                    setOrders(data);
+                    setFilteredOrders(data);
+                }
+            } catch (error) {
+                setError("Failed to fetch orders. Please try again later.");
+                console.error(error);
+            } finally {
+                setLoading(false);
             }
-        } catch (error) {
-            setError("Failed to fetch orders. Please try again later.");
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
+        };
+    }, [])
 
     useEffect(() => {
         getData();
