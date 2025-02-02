@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const validateInput = (name: string, password:string) => {
     if (!name) {
@@ -16,7 +15,6 @@ const validateInput = (name: string, password:string) => {
 };
 
 const AdminLogin = () => {
-    const navigate = useNavigate()
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);

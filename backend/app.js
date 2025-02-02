@@ -23,5 +23,4 @@ app.use("/", adminRoutes)
 app.use("/auth", authRoutes)
 app.use("/api", testRoutes)
 
-module.exports = app;
-module.exports = serverless(app);
+module.exports.handler = serverless(app);
