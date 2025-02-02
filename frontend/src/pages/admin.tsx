@@ -16,7 +16,7 @@ const Admin = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/logout`, {
+            const res = await fetch(`https://fifth-large-mechanic.glitch.me/auth/logout`, {
                 method: "GET",
                 credentials: "include",
                 headers: {
@@ -33,7 +33,7 @@ const Admin = () => {
 
     const getData = async () => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/admin`, {
+            const res = await fetch(`https://fifth-large-mechanic.glitch.me/admin`, {
                 method: "GET",
                 credentials: "include",
                 headers: {
