@@ -24,7 +24,7 @@ const Admin = () => {
                 },
             });
             if (res.ok) {
-                window.location.href = "/auth";
+                window.location.href = "/";
             }
         } catch (error) {
             console.log(error);
@@ -42,7 +42,7 @@ const Admin = () => {
             });
 
             if (res.status === 401) {
-                window.location.href = "/auth";
+                window.location.href = "/";
                 return;
             }
 

@@ -45,7 +45,7 @@ const AdminLogin = () => {
                 throw new Error(data.message || "Something went wrong.");
             }
             console.log("Login successful!", data);
-            window.location.href = "/"
+            window.location.href = "/admin"
         } catch (err) {
             if(err instanceof Error){
                 console.error(err.message);
