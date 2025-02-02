@@ -3,6 +3,7 @@ const express = require("express")
 const app = express()
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
+const serverless = require("serverless-http");
 const adminRoutes = require("./routes/admin.routes")
 const authRoutes = require("./routes/auth.routes")
 
@@ -20,4 +21,4 @@ app.use(cors({
 app.use("/", adminRoutes)
 app.use("/auth", authRoutes)
 
-app.listen("3000", ()=> console.log(`server is running\nhttp://localhost:3000`))
+module.exports = serverless(app);
